@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "node src/main.js"
+    "build": "node src/main.js",
+    "rename": "node src/rename.js",
+    "make": "node src/make.js"
   },
   "keywords": [],
   "author": "",

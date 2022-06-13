@@ -12,6 +12,16 @@ const CATEGORY_BOOK = '64'
 
 let gadioLibrary = []
 
+const getFileName = (path) => {
+    const pos1 = path.lastIndexOf('/')
+    const pos2 = path.lastIndexOf('\\')
+    const pos = Math.max(pos1, pos2)
+    if (pos < 0)
+        return path
+    else
+        return path.substring(pos + 1)
+}
+
 const getGadioData = (page = 0) => {
     const url = `https://www.gcores.com/gapi/v1/radios?page[limit]=100&page[offset]=${page * 100}&sort=-published-at&include=category,media&fields[radios]=title,published-at,duration,category`
     request({url: url,}, (error, response, body) => {
@@ -32,8 +42,9 @@ const getGadioData = (page = 0) => {
                             return {
                                 id: radio.id,
                                 title: radio.attributes.title,
-                                data: radio.attributes['published-at'].slice(0, 10),
+                                date: radio.attributes['published-at'].slice(0, 10),
                                 media: media.indexOf('https://') !== -1 ? media : `https://alioss.gcores.com/uploads/audio/${media}`,
+                                file: media.indexOf('https://') !== -1 ? getFileName(media) : media,
                                 category: category
                             }
                         }
