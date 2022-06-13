@@ -20,6 +20,7 @@ jobs:
     - name: Build
       run: |
         npm i
+        cat package-lock.json
         npm run build
     - name: Copy Files
       run: |
