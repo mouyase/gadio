@@ -50,6 +50,7 @@ const getGadioData = (page = 0) => {
                     if (json) {
                         try {
                             fs.writeFileSync('dist/gadio.json', json)
+                            fs.writeFileSync('dist/index.html', json)
                         } catch (e) {
                         }
                     }
