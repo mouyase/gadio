@@ -20,7 +20,7 @@ jobs:
     - name: Build
       run: |
         npm i
-        npm build
+        npm run build
     - name: Copy Files
       run: |
         cp CNAME dist/CNAME
